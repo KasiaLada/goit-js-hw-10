@@ -40,23 +40,31 @@ function updateCatInfo(catData) {
 
 function showError(error) {
   errorParagraph.textContent = "Error: " + error.message;
-  errorParagraph.style.display = 'block';
-  hideLoader();
-}
+  errorParagraph.classList.add('active');
+  hideLoader();}
 
 function showLoader() {
-  loader.style.display = 'block';
+  loader.classList.add('active');
+  breedSelect.classList.add('hidden');
+  catInfoDiv.classList.add('hidden');
 }
 
 function hideLoader() {
-  loader.style.display = 'none';
+  loader.classList.remove('active');
+  breedSelect.classList.remove('hidden');
+  catInfoDiv.classList.remove('hidden');
 }
 
-function initializeSelect(breeds) {
-  slimSelect = new SlimSelect({
-    select: '.breed-select',
-    data: breeds.map(breed => ({ text: breed.name, value: breed.id }))
-  });
-}
+breedSelect.addEventListener('change', async () => {
+  try {
+    showLoader();
+    const selectedBreedId = breedSelect.value;
+    const catData = await fetchCatByBreed(selectedBreedId);
+    updateCatInfo(catData);
+    hideLoader();
+  } catch (error) {
+    showError(error);
+  }
+});
 
 init();

@@ -62,10 +62,6 @@
   }
   
  
-  @keyframes spin {
-    0% { transform: translate(-50%, -50%) rotate(0deg); }
-    100% { transform: translate(-50%, -50%) rotate(360deg); }
-  }
   
  
   .error {
@@ -80,4 +76,20 @@
   }
   
 
+  .hidden {
+    display: none;
+  }
+  
+  .loader,
+  .error {
+    display: none; /* Domyślnie ukryte */
+    text-align: center;
+    color: red;
+    font-weight: bold;
+  }
+  
+  .loader.active,
+  .error.active {
+    display: block; /* Wyświetlane gdy aktywne */
+  }
   
