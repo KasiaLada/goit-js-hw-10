@@ -1,4 +1,4 @@
-/* Reset podstawowych marginesów i paddingów */
+
 * {
     margin: 0;
     padding: 0;
@@ -13,7 +13,7 @@
     padding: 20px;
   }
   
-  /* Style dla formularza wyboru rasy */
+ 
   .breed-select {
     width: 100%;
     max-width: 320px;
@@ -23,14 +23,14 @@
     border-radius: 5px;
   }
   
-  /* Style dla obrazów kotów */
+ 
   .cat-info img {
     max-width: 100%;
     height: auto;
     border-radius: 8px;
   }
   
-  /* Container dla informacji o kocie */
+  
   .cat-info {
     margin-top: 20px;
     padding: 20px;
@@ -39,16 +39,16 @@
     border-radius: 8px;
   }
   
-  /* Style dla paragrafów opisujących kota */
+ 
   .cat-info p {
     font-size: 16px;
     color: #666;
     margin-top: 10px;
   }
   
-  /* Loader CSS */
+ 
   .loader {
-    display: none; /* Ukryj loader domyślnie */
+    display: none; 
     width: 50px;
     height: 50px;
     border: 5px solid #f3f3f3;
@@ -61,15 +61,15 @@
     transform: translate(-50%, -50%);
   }
   
-  /* Animacja obrotu loadera */
+ 
   @keyframes spin {
     0% { transform: translate(-50%, -50%) rotate(0deg); }
     100% { transform: translate(-50%, -50%) rotate(360deg); }
   }
   
-  /* Style dla komunikatów o błędzie */
+ 
   .error {
-    display: none; /* Ukryj komunikat błędu domyślnie */
+    display: none; 
     color: #e74c3c;
     background-color: #fee;
     padding: 10px;
@@ -79,10 +79,5 @@
     text-align: center;
   }
   
-  /* Media queries dla responsywności */
-  @media (min-width: 768px) {
-    .breed-select, .cat-info {
-      max-width: 600px;
-    }
-  }
+
   

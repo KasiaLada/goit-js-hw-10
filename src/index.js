@@ -1,4 +1,4 @@
-// index.js
+
 import { fetchBreeds, fetchCatByBreed } from './cat-api.js';
 import SlimSelect from 'slim-select';
 import 'slim-select/dist/slimselect.css';
@@ -10,31 +10,23 @@ const catInfoDiv = document.querySelector('.cat-info');
 
 async function init() {
   try {
+    showLoader();
     const breeds = await fetchBreeds();
     populateBreedSelect(breeds);
-    new SlimSelect({
-      select: '.breed-select',
-      data: breeds.map(breed => ({ text: breed.name, value: breed.id })),
-    });
+    hideLoader();
+    initializeSelect(breeds);
   } catch (error) {
     showError(error);
   }
 }
 
-function populateBreedSelect(breeds) {
-  breeds.forEach(breed => {
-    const option = document.createElement('option');
-    option.value = breed.id;
-    option.textContent = breed.name;
-    breedSelect.appendChild(option);
-  });
-}
-
 breedSelect.addEventListener('change', async () => {
   try {
+    showLoader();
     const selectedBreedId = breedSelect.value;
     const catData = await fetchCatByBreed(selectedBreedId);
     updateCatInfo(catData);
+    hideLoader();
   } catch (error) {
     showError(error);
   }
@@ -49,6 +41,22 @@ function updateCatInfo(catData) {
 function showError(error) {
   errorParagraph.textContent = "Error: " + error.message;
   errorParagraph.style.display = 'block';
+  hideLoader();
+}
+
+function showLoader() {
+  loader.style.display = 'block';
+}
+
+function hideLoader() {
+  loader.style.display = 'none';
+}
+
+function initializeSelect(breeds) {
+  slimSelect = new SlimSelect({
+    select: '.breed-select',
+    data: breeds.map(breed => ({ text: breed.name, value: breed.id }))
+  });
 }
 
 init();
