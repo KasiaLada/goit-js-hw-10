@@ -1,9 +1,4 @@
-import axios from "axios";
-
-const API_KEY = "live_eKJE5wTLcXqUkxgAhvAuZ6vMhL2U3lJFPgsbeq4UJQjZrPx6eQ6D3cQz1IOPA5v5";
-axios.defaults.headers.common["x-api-key"] = API_KEY;
-axios.defaults.baseURL = "https://api.thecatapi.com/v1";
-
+// index.js
 import { fetchBreeds, fetchCatByBreed } from './cat-api.js';
 import SlimSelect from 'slim-select';
 import 'slim-select/dist/slimselect.css';
@@ -13,13 +8,11 @@ const loader = document.querySelector('.loader');
 const errorParagraph = document.querySelector('.error');
 const catInfoDiv = document.querySelector('.cat-info');
 
-let slimSelect;
-
 async function init() {
   try {
     const breeds = await fetchBreeds();
     populateBreedSelect(breeds);
-    slimSelect = new SlimSelect({
+    new SlimSelect({
       select: '.breed-select',
       data: breeds.map(breed => ({ text: breed.name, value: breed.id })),
     });
@@ -59,4 +52,3 @@ function showError(error) {
 }
 
 init();
-
