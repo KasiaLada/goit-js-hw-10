@@ -1,32 +1,47 @@
-
+import axios from "axios";
 import { fetchBreeds, fetchCatByBreed } from './cat-api.js';
 import SlimSelect from 'slim-select';
-import 'slim-select/dist/slimselect.css';
+import 'slim-select/dist/slimselect.min.css';
+
+const API_KEY = "tutaj_wpisz_swoj_klucz";
+axios.defaults.headers.common["x-api-key"] = API_KEY;
+axios.defaults.baseURL = "https://api.thecatapi.com/v1";
+
 
 const breedSelect = document.querySelector('.breed-select');
 const loader = document.querySelector('.loader');
 const errorParagraph = document.querySelector('.error');
 const catInfoDiv = document.querySelector('.cat-info');
 
+let slimSelect;
+
 async function init() {
   try {
-    showLoader();
     const breeds = await fetchBreeds();
     populateBreedSelect(breeds);
-    hideLoader();
-    initializeSelect(breeds);
+    slimSelect = new SlimSelect({
+      select: '.breed-select',
+      data: breeds.map(breed => ({ text: breed.name, value: breed.id })),
+    });
   } catch (error) {
     showError(error);
   }
 }
 
+function populateBreedSelect(breeds) {
+  breeds.forEach(breed => {
+    const option = document.createElement('option');
+    option.value = breed.id;
+    option.textContent = breed.name;
+    breedSelect.appendChild(option);
+  });
+}
+
 breedSelect.addEventListener('change', async () => {
   try {
-    showLoader();
     const selectedBreedId = breedSelect.value;
     const catData = await fetchCatByBreed(selectedBreedId);
     updateCatInfo(catData);
-    hideLoader();
   } catch (error) {
     showError(error);
   }
@@ -40,31 +55,7 @@ function updateCatInfo(catData) {
 
 function showError(error) {
   errorParagraph.textContent = "Error: " + error.message;
-  errorParagraph.classList.add('active');
-  hideLoader();}
-
-function showLoader() {
-  loader.classList.add('active');
-  breedSelect.classList.add('hidden');
-  catInfoDiv.classList.add('hidden');
+  errorParagraph.style.display = 'block';
 }
-
-function hideLoader() {
-  loader.classList.remove('active');
-  breedSelect.classList.remove('hidden');
-  catInfoDiv.classList.remove('hidden');
-}
-
-breedSelect.addEventListener('change', async () => {
-  try {
-    showLoader();
-    const selectedBreedId = breedSelect.value;
-    const catData = await fetchCatByBreed(selectedBreedId);
-    updateCatInfo(catData);
-    hideLoader();
-  } catch (error) {
-    showError(error);
-  }
-});
 
 init();
