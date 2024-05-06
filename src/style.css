@@ -1,87 +1,60 @@
-/* Reset podstawowych marginesów i paddingów */
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-
-body {
-  font-family: 'Roboto', sans-serif;
-  line-height: 1.6;
+/* body {
+  font-family: Arial, sans-serif;
+  padding: 20px;
   background-color: #f4f4f4;
-  color: #333;
-  padding: 20px;
-}
-
-/* Style dla formularza wyboru rasy */
-.breed-select {
-  width: 100%;
-  max-width: 320px;
-  margin: 20px auto;
-  padding: 10px;
-  border: 2px solid #ddd;
-  border-radius: 5px;
-}
-
-/* Style dla obrazów kotów */
-.cat-info img {
-  max-width: 100%;
-  height: auto;
-  border-radius: 8px;
-}
-
-/* Container dla informacji o kocie */
-.cat-info {
-  margin-top: 20px;
-  padding: 20px;
-  background-color: #fff;
-  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-  border-radius: 8px;
-}
-
-/* Style dla paragrafów opisujących kota */
-.cat-info p {
-  font-size: 16px;
-  color: #666;
-  margin-top: 10px;
-}
-
-/* Loader CSS */
-.loader {
-  display: none; /* Ukryj loader domyślnie */
-  width: 50px;
-  height: 50px;
-  border: 5px solid #f3f3f3;
-  border-top: 5px solid #3498db;
-  border-radius: 50%;
-  animation: spin 2s linear infinite;
-  position: absolute;
-  left: 50%;
-  top: 50%;
-  transform: translate(-50%, -50%);
-}
-
-/* Animacja obrotu loadera */
-@keyframes spin {
-  0% { transform: translate(-50%, -50%) rotate(0deg); }
-  100% { transform: translate(-50%, -50%) rotate(360deg); }
-}
-
-/* Style dla komunikatów o błędzie */
-.error {
-  display: none; /* Ukryj komunikat błędu domyślnie */
-  color: #e74c3c;
-  background-color: #fee;
-  padding: 10px;
-  margin-top: 20px;
-  border: 1px solid #e74c3c;
-  border-radius: 5px;
   text-align: center;
 }
 
-/* Media queries dla responsywności */
-@media (min-width: 768px) {
-  .breed-select, .cat-info {
-    max-width: 600px;
-  }
+.search-form input[type="text"] {
+  padding: 10px;
+  width: 300px;
+  margin-right: 10px;
 }
+
+.search-form button {
+  padding: 10px 20px;
+  cursor: pointer;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 5px;
+}
+
+.gallery {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+  margin-top: 20px;
+}
+
+.photo-card {
+  background-color: white;
+  box-shadow: 0 0 10px rgba(0,0,0,0.1);
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.photo-card img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.info {
+  padding: 10px;
+  text-align: left;
+}
+
+.info-item {
+  margin: 5px 0;
+}
+
+.load-more {
+  margin-top: 20px;
+  padding: 10px 20px;
+  background-color: #28a745;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+} */
