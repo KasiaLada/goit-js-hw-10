@@ -1,9 +1,9 @@
 import axios from "axios";
 import { fetchBreeds, fetchCatByBreed } from './cat-api.js';
 import SlimSelect from 'slim-select';
-import 'slim-select/dist/slimselect.min.css';
+import 'slim-select/dist/slimselect.css';
 
-const API_KEY = "tutaj_wpisz_swoj_klucz";
+const API_KEY = "live_eKJE5wTLcXqUkxgAhvAuZ6vMhL2U3lJFPgsbeq4UJQjZrPx6eQ6D3cQz1IOPA5v5";
 axios.defaults.headers.common["x-api-key"] = API_KEY;
 axios.defaults.baseURL = "https://api.thecatapi.com/v1";
 
