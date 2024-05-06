@@ -8,12 +8,13 @@ axios.defaults.headers.common["x-api-key"] = API_KEY;
 axios.defaults.baseURL = "https://api.thecatapi.com/v1";
 
 
+
 const breedSelect = document.querySelector('.breed-select');
 const loader = document.querySelector('.loader');
 const errorParagraph = document.querySelector('.error');
 const catInfoDiv = document.querySelector('.cat-info');
 
-// let slimSelect;
+let slimSelect;
 
 async function init() {
   try {
