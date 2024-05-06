@@ -13,7 +13,7 @@ const loader = document.querySelector('.loader');
 const errorParagraph = document.querySelector('.error');
 const catInfoDiv = document.querySelector('.cat-info');
 
-let slimSelect;
+// let slimSelect;
 
 async function init() {
   try {
