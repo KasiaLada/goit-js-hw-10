@@ -1,8 +1,13 @@
-// index.js
+import axios from 'axios';
+
+const API_KEY =
+  'live_eKJE5wTLcXqUkxgAhvAuZ6vMhL2U3lJFPgsbeq4UJQjZrPx6eQ6D3cQz1IOPA5v5';
+axios.defaults.headers.common['x-api-key'] = API_KEY;
+axios.defaults.baseURL = 'https://api.thecatapi.com/v1';
+
 import { fetchBreeds, fetchCatByBreed } from './cat-api.js';
 import SlimSelect from 'slim-select';
 import 'slim-select/dist/slimselect.css';
-import Notiflix from 'notiflix';
 
 const breedSelect = document.querySelector('.breed-select');
 const loader = document.querySelector('.loader');
@@ -13,10 +18,8 @@ let slimSelect;
 
 async function init() {
   try {
-    showLoader();
     const breeds = await fetchBreeds();
     populateBreedSelect(breeds);
-    hideLoader();
     slimSelect = new SlimSelect({
       select: '.breed-select',
       data: breeds.map(breed => ({ text: breed.name, value: breed.id })),
@@ -37,11 +40,9 @@ function populateBreedSelect(breeds) {
 
 breedSelect.addEventListener('change', async () => {
   try {
-    showLoader();
     const selectedBreedId = breedSelect.value;
     const catData = await fetchCatByBreed(selectedBreedId);
     updateCatInfo(catData);
-    hideLoader();
   } catch (error) {
     showError(error);
   }
@@ -54,17 +55,8 @@ function updateCatInfo(catData) {
 }
 
 function showError(error) {
-  errorParagraph.textContent = "Error: " + error.message;
+  errorParagraph.textContent = 'Error: ' + error.message;
   errorParagraph.style.display = 'block';
-  hideLoader();
-}
-
-function showLoader() {
-  loader.style.display = 'block';
-}
-
-function hideLoader() {
-  loader.style.display = 'none';
 }
 
 init();
